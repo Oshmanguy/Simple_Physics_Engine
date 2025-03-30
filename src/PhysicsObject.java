@@ -1,3 +1,6 @@
+import java.awt.*;
+import java.util.Random;
+
 public class PhysicsObject {
 
     double x;
@@ -6,7 +9,8 @@ public class PhysicsObject {
     double vy;
     double gravity = 0.5;
     double bounce = 0.8;
-    int size = 20;
+    int size; //come back to assign default size later
+    Color randomColor;
 
     /**
      * CONSTRUCTOR
@@ -17,8 +21,13 @@ public class PhysicsObject {
     public PhysicsObject(double x, double y) {
         this.x = x;
         this.y = y;
-        this.vx = 2; //Initial velocity in x direction
-        this.vy = 0; //Initial velocity in y direction
+        this.vx = Math.abs(Math.random() * 4 - 2); //Initial velocity in x direction
+        this.vy = Math.random() * 2; //Initial velocity in y direction
+
+        //Random Color and size
+        Random rando = new Random();
+        this.randomColor = new Color(rando.nextInt(255), rando.nextInt(255), rando.nextInt(255));
+        this.size = rando.nextInt(50);
     }
 
     public void update() {
