@@ -32,6 +32,18 @@ public class SimplePhysics extends JPanel implements ActionListener, KeyListener
     @Override
     public void actionPerformed(ActionEvent e) {
         for (PhysicsObject ball : balls) {
+            for (int i = 0; i < balls.size(); i++) {
+                for (int j = i + 1; j < balls.size(); j++) {
+                    PhysicsObject ball1 = balls.get(i);
+                    PhysicsObject ball2 = balls.get(j);
+
+                    //Detect collision
+                    if (ball1.isColliding(ball2)) {
+                        //Handle the collisions (change velocities based on momentum)
+                        ball1.handleCollision(ball2);
+                    }
+                }
+            }
             ball.update();
         }
         repaint();
@@ -39,8 +51,13 @@ public class SimplePhysics extends JPanel implements ActionListener, KeyListener
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) { //ablity to add new balss by pressing space
-            balls.add(new PhysicsObject(50, 50));
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) { // Ability to add new balls by pressing space
+            // Create a new ball with random initial velocities
+            double randomVx = Math.random() * 4 - 2; // Random horizontal velocity between -2 and 2
+            double randomVy = Math.random() * 2;     // Random vertical velocity between 0 and 2
+            double randomMass = Math.random() * 40;
+            //TODO: coralate size to mass
+            balls.add(new PhysicsObject(50, 50, randomVx, randomVy, randomMass));
         }
     }
 
