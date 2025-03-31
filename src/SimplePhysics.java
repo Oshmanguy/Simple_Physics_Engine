@@ -55,9 +55,9 @@ public class SimplePhysics extends JPanel implements ActionListener, KeyListener
             // Create a new ball with random initial velocities
             double randomVx = Math.random() * 4 - 2; // Random horizontal velocity between -2 and 2
             double randomVy = Math.random() * 2;     // Random vertical velocity between 0 and 2
-            double randomMass = Math.random() * 40;
+            //double randomMass = Math.random() * 40;
             //TODO: coralate size to mass
-            balls.add(new PhysicsObject(50, 50, randomVx, randomVy, randomMass));
+            balls.add(new PhysicsObject(50, 50, randomVx, randomVy));
         }
     }
 

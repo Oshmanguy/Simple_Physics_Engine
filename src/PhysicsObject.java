@@ -17,18 +17,19 @@ public class PhysicsObject {
      * @param x - x location
      * @param y - y location
      */
-    public PhysicsObject(double x, double y, double vx, double vy, double mass) {
+    public PhysicsObject(double x, double y, double vx, double vy) {
         this.x = x;
         this.y = y;
         this.vx = vx;
         this.vy = vy;
-        this.mass = mass;
 
         //Random Color and size
         Random rando = new Random();
         this.randomColor = new Color(rando.nextInt(255), rando.nextInt(255), rando.nextInt(255));
-        this.size = rando.nextInt(50);
-        //TODO: RANDOM MASS HERE MAKE IT THE SAME AS SIZE???
+
+        //randomly generate mass and size between 10 and 50 (bigger size --> bigger mass)
+        this.size = rando.nextInt(41) + 10;
+        this.mass = this.size; //mass is directly tied to size
     }
 
     public boolean isColliding(PhysicsObject other) {
@@ -66,4 +67,6 @@ public class PhysicsObject {
             vy = -vy;  // Reflect the velocity on the y-axis
         }
     }
+
+    
 }
